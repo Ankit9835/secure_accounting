@@ -11,7 +11,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{url('admin/home')}}">Home</a></li>
-              <li class="breadcrumb-item active">Seller</li>
+              <li class="breadcrumb-item active">Sellers</li>
             </ol>
           </div>
         </div>
@@ -24,132 +24,54 @@
                 <div class="card card-default">
                   <div class="row">
                     <!-- /.card-header -->
-                    <div class="col-md-12">
-                        <!-- jquery validation -->
-                        <div class="card card-primary">
-                          <div class="card-header">
-                            <h3 class="card-title text-uppercase"><small>Seller</small></h3>
-                          </div>
-                        <form action="{{ route('store.category') }}" method="post">
-                            @csrf
-                            <div class="card-body">
-                              <div class="row">
-                                <div class="col-md-6">
-                                  <div class="form-group">
-                                    <label for="">Company Name</label>
-                                    <input type="text" name="cname" class="form-control" id="" placeholder="Enter company name" required>
-                                  </div>
-                                </div>
-                                 <div class="col-md-6">
-                                  <div class="form-group">
-                                    <label for="">GSTIN</label>
-                                    <input type="text" name="gstin" class="form-control" id="" placeholder="Enter gstin name" required>
-                                  </div>
-                                </div>
-                              </div>
-
-                              <div class="row">
-                                <div class="col-md-6">
-                                  <div class="form-group">
-                                    <label for="">Company City</label>
-                                    <input type="text" name="ccity" class="form-control" id="" placeholder="Enter city name" required>
-                                  </div>
-                                </div>
-                                 <div class="col-md-6">
-                                  <div class="form-group">
-                                    <label for="">PIN CODE</label>
-                                    <input type="number" name="pincode" class="form-control" id="" placeholder="Enter pin code" required>
-                                  </div>
-                                </div>
-                              </div>
-
-                               <div class="row">
-                                <div class="col-md-6">
-                                  <div class="form-group">
-                                    <label for="">Select State</label>
-                                    <select name="state" id="state" class="form-control">
-                                                  <option value="Andhra Pradesh">Andhra Pradesh</option>
-                                                  <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
-                                                  <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-                                                  <option value="Assam">Assam</option>
-                                                  <option value="Bihar">Bihar</option>
-                                                  <option value="Chandigarh">Chandigarh</option>
-                                                  <option value="Chhattisgarh">Chhattisgarh</option>
-                                                  <option value="Dadar and Nagar Haveli">Dadar and Nagar Haveli</option>
-                                                  <option value="Daman and Diu">Daman and Diu</option>
-                                                  <option value="Delhi">Delhi</option>
-                                                  <option value="Lakshadweep">Lakshadweep</option>
-                                                  <option value="Puducherry">Puducherry</option>
-                                                  <option value="Goa">Goa</option>
-                                                  <option value="Gujarat">Gujarat</option>
-                                                  <option value="Haryana">Haryana</option>
-                                                  <option value="Himachal Pradesh">Himachal Pradesh</option>
-                                                  <option value="Jammu and Kashmir">Jammu and Kashmir</option>
-                                                  <option value="Jharkhand">Jharkhand</option>
-                                                  <option value="Karnataka">Karnataka</option>
-                                                  <option value="Kerala">Kerala</option>
-                                                  <option value="Madhya Pradesh">Madhya Pradesh</option>
-                                                  <option value="Maharashtra">Maharashtra</option>
-                                                  <option value="Manipur">Manipur</option>
-                                                  <option value="Meghalaya">Meghalaya</option>
-                                                  <option value="Mizoram">Mizoram</option>
-                                                  <option value="Nagaland">Nagaland</option>
-                                                  <option value="Odisha">Odisha</option>
-                                                  <option value="Punjab">Punjab</option>
-                                                  <option value="Rajasthan">Rajasthan</option>
-                                                  <option value="Sikkim">Sikkim</option>
-                                                  <option value="Tamil Nadu">Tamil Nadu</option>
-                                                  <option value="Telangana">Telangana</option>
-                                                  <option value="Tripura">Tripura</option>
-                                                  <option value="Uttar Pradesh">Uttar Pradesh</option>
-                                                  <option value="Uttarakhand">Uttarakhand</option>
-                                                  <option value="West Bengal">West Bengal</option>
-                                     </select>
-
-                                  </div>
-                                </div>
-                                
-                                </div>
-                              
-
-                               <div class="row">
-                                <div class="col-md-6">
-                                  <div class="form-group">
-                                    <label for="">Email</label>
-                                    <input type="text" name="email" class="form-control" id="" placeholder="Enter email" required>
-                                  </div>
-                                </div>
-                                 <div class="col-md-6">
-                                  <div class="form-group">
-                                    <label for="">Mobile</label>
-                                    <input type="number" name="phone" class="form-control" id="" placeholder="Enter phone number" required>
-                                  </div>
-                                </div>
-                              </div>
-
-                              <div class="row">
-                                <div class="col-md-6">
-                                  <div class="form-group">
-                                    <label for="">PAN CARD</label>
-                                    <input type="text" name="pancard" class="form-control" id="" placeholder="Enter pan details" required>
-                                  </div>
-                                </div>
-                                
-                              </div>
-
-                              
-
-                              
-                                  
-                                  <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                  </div>
-                            </div> 
-                    </form>
-                  </div>
-                </div>
+                   
                 
-
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                            <h3 class="card-title">Sellers List</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                    <th>S.No.</th>
+                                    <th>Company Name</th>
+                                    <th>GSTIN</th>
+                                    <th>Email</th>
+                                    <th>Mobile</th>
+                                    <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @forelse($sellers as $key=>$seller) 
+                                    <tr>
+                                    <td>{{ $key + 1 }}</td>
+                                    <td>{{ $seller->cname }}</td>
+                                    <td>{{ $seller->gstin }}</td>
+                                    <td>{{ $seller->email }}</td>
+                                    <td>{{ $seller->mobile }}</td>
+                                    <td>
+                                    <a href="" data-toggle="modal" data-target="#exampleModal{{ $seller->id }}" class="bg-warning p-1" style = "border-radius:40%; color:white;"><i class="fas fa-eye"></i></a>&nbsp;   
+                                   <a href="{{ url('customer/seller/edit/' .$seller->id) }}" class="bg-success p-1" style = "border-radius:40%;"><i class="fas fa-edit"></i></a>&nbsp;
+                                    <a href="{{ route('seller.delete', [$seller->id]) }}" id = "delete" class="bg-danger p-1" style = "border-radius:40%;"><i class="fas fa-trash"></i></a>
+                                    </td>
+                                    </tr>
+                                     @include('AdminBackend.seller.modal')
+                                     @empty
+                                    <td class = "mx-auto">There is no any sellers !</td>
+                                   
+                                    </tr>
+                                    @endforelse
+                                    
+                                   
+                                </tbody>
+                            </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                    </div>
                 </div>
             </div>
           </div>

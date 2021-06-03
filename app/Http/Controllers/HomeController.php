@@ -27,6 +27,9 @@ class HomeController extends Controller
          if(Auth::User()->role->name == 'Customer'){
             return redirect()->to('/customer/home');
         }
+         if(Auth::User()->role->name == 'Admin'){
+            return redirect()->to('/admin/home');
+        }
         return view('home');
     }
 }

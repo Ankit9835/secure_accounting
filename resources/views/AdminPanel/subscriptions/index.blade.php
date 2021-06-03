@@ -1,5 +1,5 @@
 @extends('AdminPanel.master')
-@section('title','S A Admin | Role')
+@section('title','S A Admin | Subscriptions')
 @section('body')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -10,8 +10,8 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{url('admin/home')}}">Home</a></li>
-              <li class="breadcrumb-item active">Role</li>
+              <li class="breadcrumb-item"><a href="{{url('adminpanel/home')}}">Home</a></li>
+              <li class="breadcrumb-item active">Subscriptions</li>
             </ol>
           </div>
         </div>
@@ -22,41 +22,21 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="card card-default">
-                  <div class = "row">
                     <!-- /.card-header -->
-                    <div class="col-md-4">
-                        <!-- jquery validation -->
-                        <div class="card card-primary">
-                          <div class="card-header">
-                            <h3 class="card-title"><small>Role</small></h3>
-                          </div>
-                        <form action="{{url('admin/role')}}" method="post">
-                            @csrf
-                            <div class="card-body">
-                                  <div class="form-group">
-                                    <label for="">Name</label>
-                                    <input type="text" name="name" class="form-control" id="" placeholder="Enter name" required>
-                                  </div>
-                                  <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                  </div>
-                            </div> 
-                    </form>
-                  </div>
-                </div>
-                
-                    <div class="col-8">
+                    <div class="col-md-12">
+                <div class="row">
+                    <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                            <h3 class="card-title">Role data</h3>
+                            <h3 class="card-title">Subscriptions</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                    <th>S.No.</th>
-                                    <th>Name</th>
+                                    <th>Id</th>
+                                    <th>Email</th>
                                     <th>Action</th>
                                     </tr>
                                 </thead>
@@ -64,10 +44,9 @@
                                     @foreach($datas as $data)
                                     <tr>
                                     <td>{{$data->id}}</td>
-                                    <td>{{$data->name}}</td>
+                                    <td>{{$data->email}}</td>
                                     <td>
-                                    <a href="{{ url('admin/editrole') }}/{{ $data->id }}">Edit</a>&nbsp;
-                                    <a onclick="return confirm('Are you sure want to delete?')" href="{{url('admin/deleterole')}}/{{ $data->id }}">Delete</a>
+                                    <a onclick="return confirm('Are you sure want to delete?')" href="{{url('admin/deletesubscriptions')}}/{{ $data->id }}">Delete</a>
                                     </td>
                                     </tr>
                                     @endforeach
@@ -79,7 +58,6 @@
                     </div>
                 </div>
             </div>
-          </div>
         </section>
 </div>
 @endsection
