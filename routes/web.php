@@ -58,6 +58,11 @@ Route::prefix('customer')->middleware('auth', 'customer')->group(function () {
     Route::get('/expense/edit/{id}','Customer\ExpenseController@edit')->name('expense.edit');
     Route::post('/expense/update/{id}','Customer\ExpenseController@update')->name('expense.update');
     Route::get('/expense/delete/{id}','Customer\ExpenseController@remove')->name('expense.remove');
+
+    // Products Module
+    Route::get('/products/lists','Customer\ProductController@index')->name('products.list');
+    Route::get('/products/create','Customer\ProductController@create')->name('products.add');
+
 });
 
 
@@ -100,6 +105,8 @@ Route::prefix('customer')->middleware('auth', 'customer')->group(function () {
       // General setting Module
      Route::get('/gsetting','Admin\GeneralSettingController@index');
      Route::post('/gsetting','AdminpanelController@gsettingstore')->name('gsetting');
+
+  
    
 });
 
