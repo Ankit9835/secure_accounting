@@ -27,52 +27,90 @@
                         <div style="padding:0px 2px 0px 86%; display:block;"><a href="{{ url('admin/product') }}"><i
                                     class="fas fa-reply"> Go Back</i></a></div>
                     </div>
-                    <!-- /.card-header -->
-                    <div class="card-body">
-                        <form action="" method="post">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <span>Name</span>
-                                        <input type="text" name="pname" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <span>Product Code</span>
-                                        <input type="text" name="pcode" disabled="disabled" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <span>Recorder Level</span>
-                                        <input type="text" name="rlevel" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <span>Barcode</span>
-                                        <input type="text" name="bcode" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                    <span>Minimum Stock</span>
-                                    <input type="text" name="mstock" class="form-control">
+                  <!-- /.card-header -->
+                <div class="card-body">
+                    <form action="{{route('store.product')}}" method="post" enctype="multipart/form-data">
+                    @csrf
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <span>Name</span>
+                                    <input type="text" name="name" class="form-control @error('name') is-invalid @enderror">
+                                    @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                  @enderror
                                 </div>
                                 <div class="form-group">
-                                    <span>Narration</span>
-                                    <textarea name="narration" cols="69" rows="2"></textarea>
+                                    <span>Product Code</span>
+                                    <input type="text" name="pcode" value = "{{ mt_rand(111111, 999999) }}"  class="form-control @error('pcode') is-invalid @enderror" readonly>
+                                    @error('pcode')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                  @enderror
+                                </div>
+                               
+                              
+                                <div class="form-group">
+                                    <span>Minimum Stock</span>
+                                    <input type="number" name="mstock" class="form-control @error('mstock') is-invalid @enderror">
+                                    @error('mstock')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                  @enderror
+                                </div>
+                                <div class="form-group">
+                                    <span>Purchase rate</span>
+                                    <input type="number" name="prate" class="form-control @error('prate') is-invalid @enderror">
+                                    @error('prate')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                  @enderror
+                                </div>
+                                <div class="form-group">
+                                    <span>Sales Rate</span>
+                                    <input type="number" name="srate" class="form-control @error('srate') is-invalid @enderror">
+                                    @error('srate')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                  @enderror
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <span>Product Group</span>
-                                    <select class="form-control">
-                                        <option selected="selected">--select--</option>
+                                    <span>Product Category</span>
+                                    <select class="form-control @error('category_id') is-invalid @enderror" name="category_id">
+                                    <option selected="true" disabled="disabled">Choose Category</option>
+                                        @foreach($category as $row)
+                                        <option value="{{ $row->id }}"> {{ $row->name }} </option>
+                                       @endforeach
                                     </select>
+                                    @error('category_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                  @enderror
                                 </div>
                                 <div class="form-group">
                                     <span>Expiry Date</span>
-                                    <input type="date" name="date" class="form-control">
+                                    <input type="date" name="exdate" class="form-control @error('exdate') is-invalid @enderror">
+                                    @error('exdate')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                  @enderror
                                 </div>
                                 <div class="form-group">
                                     <span>Brand</span>
-                                    <select class="form-control">
-                                        <option></option>
+                                    <select class="form-control" name = "brand">
+                                        <option value = "test">Test</option>
                                     </select>
+                                    
                                 </div>
                                 <div class="form-group">
                                     <span>Size</span>
@@ -80,34 +118,43 @@
                                 </div>
                                 <div class="form-group">
                                     <span>Status</span>
-                                    <select class="form-control ">
-                                        <option>active</option>
-                                        <option>inactive</option>
+                                    <select class="form-control @error('status') is-invalid @enderror" name="status">
+                                    <option selected="true" disabled="disabled">Choose Status</option>
+                                        <option name="1">active</option>
+                                        <option name="0">inactive</option>
                                     </select>
+                                    @error('status')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                  @enderror
+                                </div>
+                                <div class="form-group">
+                                    <span>Image</span>
+                                    <input type="file" name="image" class="form-control">
                                 </div>
                             </div>
+                            <div class="col-md-12">
+                            <span>Descrption</span>
+                            <textarea id="summernote" name="description" class= "form-control @error('description') is-invalid @enderror"></textarea>
+                            @error('description')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                  @enderror
+                            </div>
                         </div>
-                        <div class="card card-secondary">
-                            <table class="table table-bordered table-striped">
-                                <tr>
-                                    <th>#</th>
-                                    <th>UOM</th>
-                                    <th>Purchase Rate</th>
-                                    <th>Sale Rate</th>
-                                    <th>Qty (Opening Stock)</th>
-                                </tr>
-                            </table>
-                        </div>
-                        <button type="button" class="btn btn-primary" onclick="goBack()">Cancel</button>
-                        &nbsp;
+                       
                         <button type="submit" class="btn btn-primary">Save</button>
                     </form>
-                    </div>
+                </div>
                  </div>
             </div>
         </div>
     </section>
 </div>
+
+
 @endsection
 @push('css')
     <!-- DataTables -->
@@ -140,6 +187,11 @@
 
     </script>
     <!--Data Table End -->
+    <script>
+$(document).ready(function() {
+  $('#summernote').summernote();
+});
+</script>
     <script>
         function goBack() {
           window.history.back();

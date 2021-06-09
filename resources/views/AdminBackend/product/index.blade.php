@@ -35,32 +35,28 @@
                                     <thead>
                                     <tr>
                                         <th>S.No.</th>
+                                        <th>Image</th>
                                         <th>Product Code</th>
                                         <th>Product Name</th>
                                         <th>Category</th>
-                                        <th>Brand</th>
-                                        <th>Expairy Date</th>
-                                        <th>Default Unit</th>
-                                        <th>Unit Stock</th>
-                                        <th>Purchase Price</th>
-                                        <th>Sale Price</th>
+                                       
                                         <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    @forelse($products as $key=>$product) 
                                     <tr>
-                                   <td></td>
-                                   <td></td>
-                                   <td></td>
-                                   <td></td>
-                                   <td></td>
-                                   <td></td>
-                                   <td></td>
-                                   <td></td>
-                                   <td></td>
-                                   <td></td>
+                                   <td>{{ $key + 1 }}</td>
+                                   <td><img src = "{{ asset($product->image) }}" width = "100px" height = "100px"></td>
+                                   <td>{{ $product->pcode }}</td>
+                                   <td>{{ $product->name }}</td>
+                                   <td>{{ $product->category->name }}</td>
+                                  
                                    <td></td>
                                     </tr>
+                                    @empty
+                                    <td class = "mx-auto">There is no any products !</td>
+                                    @endforelse
                                     </tbody>
                                 </table>
                                 <!-- /.card-body -->

@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset ('backend/dist/css/adminlte.min.css') }}">
+  
   <!-- Google Font: Source Sans Pro -->
   @stack('css')
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
@@ -275,6 +276,7 @@ to get the desired effect
   <!-- REQUIRED SCRIPTS -->
   <!-- jQuery -->
   <script src="{{ asset ('backend/plugins/jquery/jquery.min.js') }}"></script>
+  
   <!-- Bootstrap -->
   {{-- Change Password and logout section --}}
   <script src="{{ asset ('backend/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -287,6 +289,10 @@ to get the desired effect
   <!-- OPTIONAL SCRIPTS -->
   {{-- Side bar dark --}}
   <script src="{{ asset ('backend/dist/js/demo.js') }}"></script>
+
+  <!-- include summernote css/js -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
 {{-- <script src="{{ asset('backend/plugins/jquery-ui/jquery-ui.min.js')}}"></script> --}}
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->

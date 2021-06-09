@@ -62,6 +62,7 @@ Route::prefix('customer')->middleware('auth', 'customer')->group(function () {
     // Products Module
     Route::get('/products/lists','Customer\ProductController@index')->name('products.list');
     Route::get('/products/create','Customer\ProductController@create')->name('products.add');
+    Route::post('/products/store','Customer\ProductController@store')->name('store.product');
 
 });
 
