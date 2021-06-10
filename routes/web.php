@@ -64,6 +64,13 @@ Route::prefix('customer')->middleware('auth', 'customer')->group(function () {
     Route::get('/products/create','Customer\ProductController@create')->name('products.add');
     Route::post('/products/store','Customer\ProductController@store')->name('store.product');
 
+    // Brands Module
+    Route::get('/brand/lists','Customer\BrandController@index')->name('brands.list');
+    Route::get('/brand/create','Customer\BrandController@create')->name('brands.add');
+    Route::post('/brand/store','Customer\BrandController@store')->name('brands.store');
+    Route::get('/editbrand/{id}','Customer\BrandController@edit')->name('vieweditbrand');
+    Route::post('/brand/update/{id}','Customer\BrandController@update')->name('brands.update');
+    Route::get('/deletebrand/{id}','Customer\BrandController@destroy')->name('deletebrand');
 });
 
 
