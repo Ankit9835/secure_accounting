@@ -52,8 +52,13 @@
                                    <td>{{ $product->name }}</td>
                                    <td>{{ $product->category->name }}</td>
                                   
-                                   <td></td>
+                                   <td>
+                                   <a href="" data-toggle="modal" data-target="#exampleModal{{ $product->id }}" class="bg-warning p-1" style = "border-radius:40%; color:white;"><i class="fas fa-eye"></i></a>&nbsp;   
+                                   <a href="{{ url('customer/product/edit/' .$product->id) }}" class="bg-success p-1" style = "border-radius:40%;"><i class="fas fa-edit"></i></a>&nbsp;
+                                    <a href="{{ route('product.delete', [$product->id]) }}" id = "delete" class="bg-danger p-1" style = "border-radius:40%;"><i class="fas fa-trash"></i></a>
+                                   </td>
                                     </tr>
+                                    @include('AdminBackend.product.modal')
                                     @empty
                                     <td class = "mx-auto">There is no any products !</td>
                                     @endforelse

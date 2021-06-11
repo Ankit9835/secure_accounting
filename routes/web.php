@@ -63,6 +63,9 @@ Route::prefix('customer')->middleware('auth', 'customer')->group(function () {
     Route::get('/products/lists','Customer\ProductController@index')->name('products.list');
     Route::get('/products/create','Customer\ProductController@create')->name('products.add');
     Route::post('/products/store','Customer\ProductController@store')->name('store.product');
+    Route::get('/product/edit/{id}','Customer\ProductController@edit')->name('product.edit');
+    Route::post('/product/update/{id}','Customer\ProductController@update')->name('product.update');
+    Route::get('/product/delete/{id}','Customer\ProductController@destroy')->name('product.delete');
 
     // Brands Module
     Route::get('/brand/lists','Customer\BrandController@index')->name('brands.list');
