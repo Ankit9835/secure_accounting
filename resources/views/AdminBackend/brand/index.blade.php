@@ -47,7 +47,7 @@
                                     @endphp
                                     @foreach($data as $datas)
                                     <tr>
-                                    <td>{{$i}}</td>
+                                    <td>{{$i++}}</td>
                                     <td>{{$datas->bname}}</td>
                                     <td>{{$datas->description}}</td>
                                     <td>{{$datas->status}}</td>

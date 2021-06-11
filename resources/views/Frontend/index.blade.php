@@ -12,21 +12,21 @@
   </ul>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="{{ asset('frontend/image/pexel-four.jpg') }}" class="img-responsive">
+      <img src="{{ asset('frontend/image/4.jpg') }}" class="img-responsive">
       <div class="carousel-text">
        <!--  <h3 class="txt text-warning font-weight-bold">We provide solutions for your business!</h3> -->
        <!--  <p><a href=""><button class="btn btn-warning">Get Start</button></a> <a href=""><button class="btn btn-success"> Our Services</button></a></p> -->
       </div>   
     </div>
     <div class="carousel-item">
-      <img src="{{ asset('frontend/image/pexel-second.jpg') }}" class="img-responsive">
+      <img src="{{ asset('frontend/image/2.jpg') }}" class="img-responsive">
       <div class="carousel-text">
          <h3 class="txt text-white font-weight-bold">We provide solutions for your business!</h3> 
         <p><a href=""><button class="btn btn-warning">Get Start</button></a> <a href=""><button class="btn btn-success"> Our Services</button></a></p> 
       </div>   
     </div>
     <div class="carousel-item">
-      <img src="{{ asset('frontend/image/pexel-five.jpg') }}" class="img-responsive">
+      <img src="{{ asset('frontend/image/5.jpg') }}" class="img-responsive">
       <div class="carousel-text">
         <h3 class="txt text-white font-weight-bold">We provide solutions for your business!</h3>
         
