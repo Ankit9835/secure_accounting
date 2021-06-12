@@ -17,7 +17,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::where('id', Auth::User()->id)->get();
+        $products = Product::where('user_id', Auth::User()->id)->get();
         return view('AdminBackend.product.index',compact('products'));
     }
 
@@ -28,7 +28,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $category = Category::where('id', Auth::User()->id)->get();
+        $category = Category::where('user_id', Auth::User()->id)->get();
         //dd($category);
         return view('AdminBackend.product.create', compact('category'));
     }
