@@ -130,6 +130,12 @@ to get the desired effect
                   <p>Category</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{route('my.company')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Company's Profile</p>
+                </a>
+              </li>
                <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-table"></i>

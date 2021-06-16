@@ -74,6 +74,10 @@ Route::prefix('customer')->middleware('auth', 'customer')->group(function () {
     Route::get('/editbrand/{id}','Customer\BrandController@edit')->name('vieweditbrand');
     Route::post('/brand/update/{id}','Customer\BrandController@update')->name('brands.update');
     Route::get('/deletebrand/{id}','Customer\BrandController@destroy')->name('deletebrand');
+
+    // Company Module
+    Route::get('/my/company-details','Customer\CompanyController@index')->name('my.company');
+    Route::post('/update/company/profile','Customer\CompanyController@updateCompany')->name('update.company.profile');
 });
 
 
