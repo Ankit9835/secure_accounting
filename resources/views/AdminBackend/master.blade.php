@@ -9,6 +9,7 @@
      <link rel="shortcut icon" type="image/x-icon" href="{{ asset('backend/dist/img/logo.jpg') }}">
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="{{ asset ('backend/plugins/fontawesome-free/css/all.min.css') }}">
+  <link rel="stylesheet" href="{{ asset ('backend/plugins/font-awesome/css/font-awesome.min.css') }}">
   <!-- overlayScrollbars -->
   {{-- <link rel="stylesheet" href="{{ asset ('backend/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}"> --}}
     <link href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css" rel="stylesheet"/>
@@ -260,6 +261,31 @@ to get the desired effect
              
             </ul>
           </li>
+
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-table"></i>
+              <p>
+                Orders
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('create.order') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Create Order</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Order List</p>
+                </a>
+              </li>
+             
+            </ul>
+          </li>
               
               <!-- <li class="nav-item">
                 <a href="#" class="nav-link">
@@ -306,6 +332,7 @@ to get the desired effect
 <!-- ./wrapper -->
   <!-- REQUIRED SCRIPTS -->
   <!-- jQuery -->
+  
   <script src="{{ asset ('backend/plugins/jquery/jquery.min.js') }}"></script>
   
   <!-- Bootstrap -->

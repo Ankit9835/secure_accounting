@@ -78,6 +78,9 @@ Route::prefix('customer')->middleware('auth', 'customer')->group(function () {
     // Company Module
     Route::get('/my/company-details','Customer\CompanyController@index')->name('my.company');
     Route::post('/update/company/profile','Customer\CompanyController@updateCompany')->name('update.company.profile');
+
+    // Orders Module
+    Route::get('/create/order','Customer\OrderController@index')->name('create.order');
 });
 
 
