@@ -81,6 +81,10 @@ Route::prefix('customer')->middleware('auth', 'customer')->group(function () {
 
     // Orders Module
     Route::get('/create/order','Customer\OrderController@index')->name('create.order');
+
+
+    // Get Products
+    Route::get('getproduct','Customer\ProductController@getProduct');
 });
 
 

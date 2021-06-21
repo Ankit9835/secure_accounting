@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
 use Auth;
+use DB;
 
 class ProductController extends Controller
 {
@@ -261,6 +262,33 @@ class ProductController extends Controller
             'srate' => 'required',
             'description' => 'required|max:200',
     	]);
+
+    }
+
+    public function getProduct(){
+
+        $id = $_GET['id'];
+
+       
+
+        $select = DB::table('products')->where('id', $id);
+
+
+       
+
+        
+
+        $row = $select->first();
+
+        $response = $row;
+
+        header('Content-Type:application/json');
+
+        echo json_encode($response);
+
+        
+
+       
 
     }
 }

@@ -1,5 +1,15 @@
 @extends('AdminBackend.master')
 @section('title','S A Admin | Add Brand')
+
+@php
+
+Auth::User()->fill_product()
+
+@endphp
+
+
+
+
 @section('body')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <div class="content-wrapper">
@@ -92,7 +102,7 @@
 
                                  <div class="input-group mt-2">
                           
-                                     <input type="text" class="form-control" name = "txtcustomer"  readonly>
+                                     <input type="text" class="form-control" id = "txtsubtotal" name = "txtsubtotal"  readonly>
                                 </div>
                              </div>
                           </div>
@@ -102,7 +112,7 @@
 
                                 <div class="input-group  mt-2 date">
                         
-                      <input type="text" class="form-control pull-right" id="datepicker" name = "orderdate" readonly>
+                      <input type="text" class="form-control pull-right" id="txttotal" name = "txttotal" readonly>
                     </div>
                              </div>
                          </div>  
@@ -119,7 +129,7 @@
 
                                  <div class="input-group mt-2">
                           
-                                     <input type="text" class="form-control" name = "txtcustomer"  readonly>
+                                     <input type="text" class="form-control" id = "txttax" name = "txttax"  readonly>
                                 </div>
                              </div>
                           </div>
@@ -129,7 +139,7 @@
 
                                 <div class="input-group  mt-2 date">
                         
-                      <input type="text" class="form-control pull-right" id="datepicker" name = "orderdate">
+                      <input type="text" class="form-control pull-right" id="txtpaid" name = "txtpaid">
                     </div>
                              </div>
                          </div>  
@@ -145,7 +155,7 @@
 
                                  <div class="input-group mt-2">
                           
-                                     <input type="text" class="form-control" name = "txtcustomer">
+                                     <input type="text" class="form-control" id = "txtdiscount" name = "txtdiscount">
                                 </div>
                              </div>
                           </div>
@@ -155,7 +165,7 @@
 
                                 <div class="input-group  mt-2 date">
                         
-                      <input type="text" class="form-control pull-right" id="datepicker" name = "orderdate" readonly>
+                      <input type="text" class="form-control pull-right" id="txtdue" name = "txtdue" readonly>
                     </div>
                              </div>
                          </div>  
@@ -164,6 +174,24 @@
                             
                         </div>
 
+                    <div class="row">
+                        <div class="col-md-12 mx-auto">
+                        <label> Payment Method </label>
+                         <div class="form-group">
+
+                            <label>
+                            <input type="radio" name="rb" class="minimal-red" value = "Cash" checked> CASH
+                            </label>
+                            <label>
+                            <input type="radio" name="rb" class="minimal-red" value = "Card"> CARD
+                            </label>
+                            <label>
+                            <input type="radio" name="rb" class="minimal-red" value = "Cheque"> CHEQUE
+                            
+                            </label>
+                         </div>
+                        </div>
+                    </div>
 
                         
                         <div class="text-center mt-4">
@@ -185,8 +213,8 @@
           var html='';
           html+='<tr>';
           html+='<td> <input type="hidden" class="form-control pname" name = "productname[]" readonly> </td>';
-          html+='<td> <select style = "width:250px;"  class="form-control productid" name = "productid[]"> <option value = ""> Select Option  </option>  </select> </td>';
-          html+='<td> <input type="text" class="form-control stock" name = "stock[]" readonly> </td>';
+          html+='<td> <select style = "width:250px;"  class="form-control productid" name = "productid[]"> <option value = ""> Select Option  </option> <?php echo Auth::User()->fill_product() ?> </select> </td>';
+          html+='<td> <input type="text" class="form-control mstock" name = "mstock[]" readonly> </td>';
           html+='<td> <input type="text" class="form-control price" name = "price[]" readonly> </td>';
           html+='<td> <input type="number" min = "1" class="form-control qty" name = "qty[]"> </td>';
           html+='<td> <input type="text" class="form-control total" name = "total[]" readonly> </td>';
@@ -198,17 +226,110 @@
           $('#producttable').append(html);
 
           
+          $('.productid').on('change', function(e){
+              var productid = this.value;
+              var tr=$(this).parent().parent();
 
+              $.ajax({
+                  url:"/customer/getproduct",
+                  dataType: "json",
+                  method:"get",
+                  data:{id:productid},
+                  success:function(data){
+                    console.log(data);
+                   
+                   
+                      tr.find(".pname").val(data.name);
+                      tr.find(".mstock").val(data.mstock);
+                      tr.find(".price").val(data.srate);
+                      tr.find(".qty").val(1);
+                      tr.find(".total").val(tr.find(".qty").val() *  tr.find(".price").val());
+                      calculate(0,0);
+                  }
+              })
+
+          });
         
 
-        })
+        });
 
         $(document).on('click','.btnremove',function(){
 
             $(this).closest('tr').remove();
           
 
+        });
+
+        $("#producttable").delegate(".qty","keyup change" ,function(){
+       
+       var quantity = $(this);
+        var tr = $(this).parent().parent();
+        
+     if((quantity.val()-0)>(tr.find(".mstock").val()-0) ){
+        
+       
+        
+        alert('SORRY! This much of quantity is not available');
+         quantity.val(1);
+        
+          tr.find(".total").val(quantity.val() *  tr.find(".price").val());
+          calculate(0,0);
+        }else{
+            
+            tr.find(".total").val(quantity.val() *  tr.find(".price").val());
+            calculate(0,0);
+        }    
+        
+        
+        
+     }); 
+
+
+         function calculate(dis,paid){
+         
+                    var subtotal=0;
+                    var tax=0;
+                    var discount = dis;    
+                    var net_total=0;
+                    var paid_amt=paid;
+                 var due=0;
+         
+         
+            $(".total").each(function(){
+                
+                subtotal = subtotal+($(this).val()*1);    
+                
+            })
+         
+          tax = 0.05*subtotal;
+          net_total = tax+subtotal;
+          net_total = net_total-discount;
+          due = net_total-paid_amt;    
+         
+   
+          $("#txtsubtotal").val(subtotal.toFixed(2));
+          $("#txttax").val(tax.toFixed(2));
+          $("#txttotal").val(net_total.toFixed(2));
+          //$("#txttotal").val(net_total.toFixed(2));
+          $("#txtdiscount").val(discount);
+          $("#txtdue").val(due.toFixed(2));
+ 
+         
+         
+     }// function calculate end here   
+
+     $("#txtdiscount").keyup(function(){
+            var discount = $(this).val();
+            calculate(discount,0);
+
         })
+       
+      $("#txtpaid").keyup(function(){
+            var paid = $(this).val();
+            var discount = $("#txtdiscount").val();
+            calculate(discount,paid);
+
+        })  
 
       
        
