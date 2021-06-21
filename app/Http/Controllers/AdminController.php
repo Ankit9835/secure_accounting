@@ -3,17 +3,34 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 use App\Models\Category;
+use App\Models\Buyer;
+use App\Models\Expense;
+use App\Models\Seller;
+use App\Models\Brand;
+use App\Models\Product;
 use App\Models\Role;
 use App\Models\Banner;
+use App\Models\Contact;
+use App\Models\Subscription;
 use Validator;
 use File;
+use Auth;
 
 class AdminController extends Controller
 {
     public function dashboard()
     {
-        return view('AdminBackend.dashboard');
+        $category = Category::where('user_id', Auth::User()->id)->count();
+        $buyer = Buyer::where('user_id', Auth::User()->id)->count();
+        $expense = Auth::user()->expenses()->sum('amount');
+        //dd($expense);
+        $seller = Auth::user()->sellers()->count();
+        $brand = Auth::user()->brands()->count();
+        $product = Auth::user()->products()->count();
+
+        return view('AdminBackend.dashboard',compact('category','buyer','expense','seller','brand','product'));
     }
     public function chpwd()
     {
@@ -21,7 +38,12 @@ class AdminController extends Controller
     }
 
     public function admin_home(){
-        return view('AdminPanel.dashboard');
+        $user = User::where('role_id', 2)->count();
+        $roles = Role::all()->count();
+        $contacts = Contact::all()->count();
+        $banner = Banner::all()->count();
+        $subsription = Subscription::all()->count();
+        return view('AdminPanel.dashboard',compact('user','roles','contacts','banner','subsription'));
     }
 
      public function banner()

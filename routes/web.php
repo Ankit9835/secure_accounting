@@ -99,29 +99,29 @@ Route::prefix('customer')->middleware('auth', 'customer')->group(function () {
    Route::get('/home','AdminController@admin_home');
 
     // Users Module
-    Route::get('/users','Admin\UserController@index');
+    Route::get('/users','Admin\UserController@index')->name('all.users');
     Route::get('/deleteusers/{id}','AdminpanelController@deleteUser');
 
    //Role Module
-    Route::get('/role','AdminController@role');
+    Route::get('/role','AdminController@role')->name('all.roles');
     Route::post('/role','AdminController@storerole');
     Route::get('/editrole/{id}','AdminController@editrole');
     Route::post('/editrole/{id}','AdminController@editRolestore');
     Route::get('/deleterole/{id}','AdminController@deleteRole');
 
     // Banner Module
-     Route::get('/banner','AdminController@banner');
+     Route::get('/banner','AdminController@banner')->name('all.banners');
      Route::post('/banner','AdminController@storebanner');
      Route::get('/editbanner/{id}','AdminController@editbanner');
      Route::post('/editbanner/{id}','AdminController@editBannerstore');
      Route::get('/deletebanner/{id}','AdminController@deleteBanner');
 
      // Contacts Module
-     Route::get('/contacts','Admin\ContactController@index');
+     Route::get('/contacts','Admin\ContactController@index')->name('all.contacts');
      Route::get('/deletecontacts/{id}','Admin\ContactController@destroy');
 
       //Subscrption Module
-     Route::get('/subscriptions','Admin\SubscriptionController@index');
+     Route::get('/subscriptions','Admin\SubscriptionController@index')->name('all.subs');
      Route::get('/deletesubscriptions/{id}','Admin\SubscriptionController@destroy');
 
       // General setting Module

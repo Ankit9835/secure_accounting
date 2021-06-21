@@ -52,6 +52,30 @@ class User extends Authenticatable
         return $this->belongsTo('App\Models\Role');
     }
 
+    public function expenses(){
+        return $this->hasMany('App\Models\Expense');
+    }
+
+    public function categories(){
+        return $this->hasMany('App\Models\Category');
+    }
+
+    public function buyers(){
+        return $this->hasMany('App\Models\Buyer');
+    }
+
+    public function sellers(){
+        return $this->hasMany('App\Models\Seller');
+    }
+
+    public function brands(){
+        return $this->hasMany('App\Models\Brand');
+    }
+
+    public function products(){
+        return $this->hasMany('App\Models\Product');
+    }
+
     function fill_product(){
 
         $output = '';
